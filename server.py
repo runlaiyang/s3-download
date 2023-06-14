@@ -9,7 +9,7 @@ from flask import Flask
 logging.basicConfig(level=logging.INFO)
 application = Flask(__name__)
 
-FILE_NAME = 'AWSBulletAutoScalingLambda.zip'
+FILE_NAME = 'test.zip'
 s3_bucket_name_template = 'panicks-test-beta'
 
 session = boto3.Session()
