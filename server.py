@@ -14,10 +14,13 @@ s3_bucket_name_template = 'panicks-test-beta'
 
 session = boto3.Session()
 s3client = session.client(service_name='s3', region_name=os.environ.get("AWS_REGION"))
-s3_bucket_name = s3_bucket_name_template.format(caller_account_id)
-logging.info("Retrieving data from s3 bucket {}".format(s3_bucket_name))
-
+stsClient = boto3.client('sts')
+identity_response = stsClient.get_caller_identity()
 loop_start = time.time()
+
+caller_account_id = identity_response['Account']
+s3_bucket_name = s3_bucket_name_template.format(caller_account_id)
+
 while(time.time() - loop_start < 90):
   start_time = time.time()
   response = s3client.get_object(
@@ -32,4 +35,4 @@ while(time.time() - loop_start < 90):
 
 if __name__ == '__main__':
     port = int(os.environ.get("FLASK_RUN_PORT", 8000))
-    application.run(debug=False, port=port)
+    application.run(debug=False, port=port
