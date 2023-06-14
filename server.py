@@ -35,4 +35,4 @@ while(time.time() - loop_start < 90):
 
 if __name__ == '__main__':
     port = int(os.environ.get("FLASK_RUN_PORT", 8000))
-    application.run(debug=False, port=port
+    application.run(debug=False, port=port)
