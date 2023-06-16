@@ -9,7 +9,7 @@ from flask import Flask
 logging.basicConfig(level=logging.INFO)
 application = Flask(__name__)
 
-@app.route("/")
+@application.route("/")
 def hello_world():
   FILE_NAME = 'AWSBulletAutoScalingLambda.zip'
   s3_bucket_name_template = 'panicks-test-beta'
