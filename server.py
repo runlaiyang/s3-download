@@ -31,9 +31,9 @@ def hello_world():
     )
   
     time_taken = time.time() - start_time
-    logging.info("Finished downloading file from s3 in {} seconds".format(time_taken))
+    logging.info("[{}] Dowload Duration {} seconds".format(time.time(), time_taken ))
     time.sleep(3)
-    logging.info(response)
+    
   return "<p>Hello, World!</p>"
 
 if __name__ == '__main__':
