@@ -29,13 +29,17 @@ def hello_world():
       Bucket=s3_bucket_name,
       Key=FILE_NAME
     )
-  
-    time_taken = time.time() - start_time
-    logging.info("[{}] Dowload Duration {} seconds".format(time.time(), time_taken ))
+    
+    time_taken = (time.time() - start_time)*1000;
+    if (time.time() - loop_start >= 60):
+      logging.info("[{}] Throttled Dowload Duration {} ms".format(time.time(), time_taken ))
+    else:
+      logging.info("[{}] Dowload Duration {} ms".format(time.time(), time_taken ))
     time.sleep(3)
     
   return "<p>Hello, World!</p>"
 
 if __name__ == '__main__':
+    hello_world()
     port = int(os.environ.get("FLASK_RUN_PORT", 8000))
     application.run(host='0.0.0.0', debug=False, port=port)
