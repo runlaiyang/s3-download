@@ -11,8 +11,8 @@ application = Flask(__name__)
 
 @application.route("/")
 def hello_world():
-  FILE_NAME = 'AWSBulletAutoScalingLambda.zip'
-  s3_bucket_name_template = 'panicks-test-beta'
+  FILE_NAME = 'download'
+  s3_bucket_name_template = 'slow-launch-bucket'
   
   session = boto3.Session()
   s3client = session.client(service_name='s3', region_name=os.environ.get("AWS_REGION"))
