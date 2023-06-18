@@ -11,6 +11,7 @@ application = Flask(__name__)
 
 @application.route("/")
 def hello_world():
+  logging.info("Downloading file")
   FILE_NAME = 'download'
   s3_bucket_name_template = 'slow-launch-bucket'
   
@@ -19,6 +20,7 @@ def hello_world():
   stsClient = boto3.client('sts')
   identity_response = stsClient.get_caller_identity()
   loop_start = time.time()
+  logging.info("Downloading file {}", loop_start)
   
   caller_account_id = identity_response['Account']
   s3_bucket_name = s3_bucket_name_template.format(caller_account_id)
