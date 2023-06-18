@@ -40,6 +40,6 @@ def hello_world():
   return "<p>Hello, World!</p>"
 
 if __name__ == '__main__':
-    hello_world()
+    #hello_world()
     port = int(os.environ.get("FLASK_RUN_PORT", 8000))
     application.run(host='0.0.0.0', debug=False, port=port)
