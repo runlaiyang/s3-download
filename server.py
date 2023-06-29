@@ -18,7 +18,7 @@ def hello_world():
   s3client = session.client(service_name='s3', region_name=os.environ.get("AWS_REGION"))
   stsClient = boto3.client('sts')
   identity_response = stsClient.get_caller_identity()
-  logging.info("Downloading file {}".format(loop_start))
+  logging.info("Downloading file {}".format(FILE_NAME))
   
   caller_account_id = identity_response['Account']
   s3_bucket_name = 'test-bucket-071049406198'
@@ -29,7 +29,7 @@ def hello_world():
     Key=FILE_NAME
   )  
   time_taken = (time.time() - start_time)*1000;
-  logging.info("[{}] Download Duration {} ms".format(time.time(), time_taken ))
+  logging.info("[{}] Download Duration {} ms".format(time.ctime(), time_taken ))
 
   return "<p>Successfully downloaded file from S3</p>"
 
