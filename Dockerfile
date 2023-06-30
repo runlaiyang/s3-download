@@ -24,6 +24,6 @@ RUN yum update -y \
     && yum -y clean all --enablerepo='*' \
     && rm -rf /var/cache/yum
 
-RUN pip3 install -r requirements.txt
-
-CMD ["python", "./server.py"]
+RUN pip3 install -r requirements.txt --no-cache-dir
+RUN pip3 install gunicorn
+CMD ["gunicorn", "-w" "4", "server:application", "-b" "0.0.0.0:8000"]
