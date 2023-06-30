@@ -13,9 +13,7 @@ RUN yum update -y \
     && yum groupinstall -y "Development tools" \
     && yum install -y \
 	       python38-devel \
-           pycairo \
            python38 \
-           libffi-devel \
     && python3.8 -m pip install pip --upgrade \
     && ln -s /usr/local/bin/pip3 /usr/bin/pip3 \
     && ln -s /usr/bin/pydoc3.8 /usr/local/bin/pydoc \
@@ -25,5 +23,6 @@ RUN yum update -y \
     && rm -rf /var/cache/yum
 
 RUN pip3 install -r requirements.txt --no-cache-dir
-RUN pip3 install gunicorn
-CMD ["gunicorn", "-w" "4", "server:application", "-b" "0.0.0.0:8000"]
+RUN pip3 install git+https://github.com/benoitc/gunicorn.git
+
+CMD ["gunicorn", "-w", "4", "server:application", "-b", "0.0.0.0:8000"]
