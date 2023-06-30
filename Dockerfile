@@ -2,8 +2,7 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
 ENV PATH=/usr/local/bin:$PATH \
     LC_ALL=C.UTF-8 \
-    LANG=C.UTF-8 \
-    WEB_CONCURRENCY=2
+    LANG=C.UTF-8
 
 EXPOSE 8000
 WORKDIR /srv
