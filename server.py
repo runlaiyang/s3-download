@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+from gevent import monkey
+monkey.patch_all()
+
 import boto3
 import os
 import logging
@@ -28,7 +31,6 @@ def hello_world():
 
   loop_start = time.time()
   while((time.time() - loop_start) * 1000 < loop_time):
-    logging.info("Downloading file {}".format(FILE_NAME))
     start_time = time.time()
     response = s3client.get_object(
       Bucket=s3_bucket_name,

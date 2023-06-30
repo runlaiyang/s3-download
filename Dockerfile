@@ -24,5 +24,6 @@ RUN yum update -y \
 
 RUN pip3 install -r requirements.txt --no-cache-dir
 RUN pip3 install git+https://github.com/benoitc/gunicorn.git
+RUN pip3 install gunicorn[gevent]
 
-CMD ["gunicorn", "-w", "4", "server:application", "-b", "0.0.0.0:8000"]
+CMD ["gunicorn", "-w", "4", "server:application", "-b", "0.0.0.0:8000", "-k", "gevent"]
