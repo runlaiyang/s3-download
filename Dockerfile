@@ -2,9 +2,11 @@ FROM public.ecr.aws/amazonlinux/amazonlinux:2
 
 ENV PATH=/usr/local/bin:$PATH \
     LC_ALL=C.UTF-8 \
-    LANG=C.UTF-8
+    LANG=C.UTF-8\
+    AWS_ACCESS_KEY_ID={}\
+    AWS_SECRET_ACCESS_KEY={}
 
-EXPOSE 8000
+EXPOSE 80
 WORKDIR /srv
 COPY . /srv
 
@@ -26,4 +28,4 @@ RUN pip3 install -r requirements.txt --no-cache-dir
 RUN pip3 install git+https://github.com/benoitc/gunicorn.git
 RUN pip3 install gunicorn[gevent]
 
-CMD ["gunicorn", "-w", "4", "server:application", "-b", "0.0.0.0:8000", "-k", "gevent"]
+CMD ["gunicorn", "-w", "4", "server:application", "-b", "0.0.0.0:80", "-k", "gevent"]
